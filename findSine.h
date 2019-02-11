@@ -7,6 +7,7 @@ class FunctionValues {
  private:
 	 int numValues;
 	 double* values;
+	 double y_delta;
  public:
 	 // Constructor, that reads values from a given file
 	 FunctionValues(const char* argc);
@@ -18,9 +19,19 @@ class FunctionValues {
 	 void printValues();
 
 	 // write values into a file
-	 void writeValues(const char* argc);	
+	 void writeValues(const char* argc);
+
  	 // Returns the max values ( = amplitude)
 	 double getMax();
+
+	 // Returns the number of values
+	 int getNumValues();
+
+	 // Normalizes all values to start with 0 (= y_delta)
+	 void normalize();
+
+	 // returns y_delta
+	 double getY_Delta();
 
 	 // Finds a sine-function, that matches the values of the
 	 // object and returns the factor to generate the sine

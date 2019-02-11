@@ -19,6 +19,7 @@ FunctionValues::FunctionValues(const char* argc) {
 	size_t len = 0;
 	numValues = 0;
 	while ((getline(&line, &len, fp)) != -1) {
+	printf("%s\n", line);
 	printf("[FunctionValues] Reading value: %f\n", atof(line));
 	numValues++;
 	}
@@ -30,7 +31,8 @@ FunctionValues::FunctionValues(const char* argc) {
 	printf("[FunctionValues] %d values found\n", numValues);
 	this->numValues = numValues;
 	this->values = new double[numValues];
-	
+	this->y_delta = 0;
+
 	// open given file again in reading mode
 	fp = fopen(argc, "r");
 	if (fp == NULL) {
@@ -80,23 +82,94 @@ void FunctionValues::writeValues(const char* argc) {
 }
 
 //___________________________________________________________________
+int FunctionValues::getNumValues() {
+	return this->numValues;
+}
+
+//___________________________________________________________________
 double FunctionValues::getMax() {
 
 	double maxValue = 0;
+	double minValue = 0;
 	for (int i = 0; i < this->numValues; i++) {
 		if (this->values[i] > maxValue) {
 			maxValue = this->values[i];
 		}
+		if (this->values[i] < minValue) {
+			minValue = this->values[i];
+		}
 	}
-	return maxValue;
+
+	if (((-2) * minValue) > maxValue) {
+		return minValue;
+	}
+	else {
+		return maxValue;
+	}
+}
+
+//___________________________________________________________________
+void FunctionValues::normalize() {
+	
+	this->y_delta = this->values[0];
+
+	if (this->y_delta > 0) {
+		for (int i = 0; i < this->numValues; i++) {
+			this->values[i] -= y_delta;
+		}
+	}
+
+	if (this->y_delta < 0) {
+		for (int j = 0; j < this->numValues; j++) {
+			this->values[j] += y_delta;
+		}
+	}
+}
+
+//___________________________________________________________________
+double FunctionValues::getY_Delta() {
+
+	return this->y_delta;
 }
 
 //___________________________________________________________________
 double FunctionValues::findSine() {
+	
+	double bestFreq = 0.0;
+	int bestMatches = 0;
 
-	printf("[findSine][LOG] TODO: functionallity\n");
+	int matches = 0;
+	double amp = this->getMax();
 
-	return 0.0;
+	if (amp < 0) {
+		amp = amp * (-1);
+	}
+
+	for (double i = -0.01; i > -1; i -= 0.001) {
+		printf("[findSine][%f]", i);
+		for (int j = 0; j < this->numValues; j++) {
+		printf("diff = %f\n",this->values[j]- amp * sin(i*j));
+			/*if ((amp * sin(i*j)) == this->values[j]) {
+				matches++;
+			}*/
+		double diff = this->values[j]-(amp * sin(i*j));
+		if (abs(diff) < 0.09) {
+			matches++;
+		}
+
+		if (matches > bestMatches) {
+			bestMatches = matches;
+			bestFreq = i;
+		}
+		}
+		matches = 0;
+		printf(" best matches = %d\n", bestMatches);	
+	}
+
+	printf("[findSine] best matches (%d) with %f\n",
+			bestMatches, bestFreq);
+
+	return bestFreq;
 }
 
 //___________________________________________________________________
