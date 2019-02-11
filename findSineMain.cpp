@@ -5,7 +5,7 @@
 // main function of the project to execute given functionallitys
 int main(int argv, char* argc[]) {
 
-	FunctionValues object = FunctionValues("realData.txt");
+	FunctionValues object = FunctionValues("1.txt");
 	object.normalize();
 	printf("[Main] y_delta = %f\n", object.getY_Delta());
 	object.printValues();

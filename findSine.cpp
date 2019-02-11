@@ -148,14 +148,14 @@ double FunctionValues::findSine() {
 	for (double i = -0.01; i > -1; i -= 0.001) {
 		printf("[findSine][%f]", i);
 		for (int j = 0; j < this->numValues; j++) {
-		printf("diff = %f\n",this->values[j]- amp * sin(i*j));
+		
 			/*if ((amp * sin(i*j)) == this->values[j]) {
 				matches++;
 			}*/
-		double diff = this->values[j]-(amp * sin(i*j));
+			double diff = this->values[j]-(amp*sin(i*j));
 		if (abs(diff) < 0.09) {
 			matches++;
-		}
+			}
 
 		if (matches > bestMatches) {
 			bestMatches = matches;
