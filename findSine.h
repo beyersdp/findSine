@@ -13,6 +13,8 @@ class FunctionValues {
 
 	 // Prints all values of the class instance
 	 void printValues();
+
+	 // TODO: writeValues(const char* argc) into a file
 	
  	 // Returns the max values ( = amplitude)
 	 double getMax();
@@ -21,5 +23,9 @@ class FunctionValues {
 	 // object and returns the factor to generate the sine
 	 double findSine();
 };
+
+// 
+void genSine(double amp, double freq, int numValues);
+//TODO: retruns a FunctionValues object
 
 #endif //_FINDSINE_H_

@@ -10,5 +10,7 @@ int main(int argv, char* argc[]) {
 	printf("[Main] Max values of object = %f\n", object.getMax());
 	object.findSine();
 
+	genSine(1, 1, 20);
+
 	return 0;
 }

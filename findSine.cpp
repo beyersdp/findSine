@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "findSine.h"
 
 //____________________________________________________________________
@@ -77,3 +78,16 @@ double FunctionValues::findSine() {
 
 	return 0.0;
 }
+
+//___________________________________________________________________
+void genSine(double amp, double freq, int numValues) {
+
+	double value = 0;
+	for (int i = 0; i < numValues; i++) {
+		value = amp * sin((freq) * i);
+	       printf("[genSine] %f\n", value);	
+	}
+}
+
+
+
