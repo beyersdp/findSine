@@ -11,11 +11,14 @@ class FunctionValues {
 	 // Constructor, that reads values from a given file
 	 FunctionValues(const char* argc);
 
+	 // Deconstructor
+	 ~FunctionValues();
+
 	 // Prints all values of the class instance
 	 void printValues();
 
-	 // TODO: writeValues(const char* argc) into a file
-	
+	 // write values into a file
+	 void writeValues(const char* argc);	
  	 // Returns the max values ( = amplitude)
 	 double getMax();
 
@@ -24,8 +27,8 @@ class FunctionValues {
 	 double findSine();
 };
 
-// 
+// Generates a Sine with given parameters and saves the values
+// in sine.txt in the current directory
 void genSine(double amp, double freq, int numValues);
-//TODO: retruns a FunctionValues object
 
 #endif //_FINDSINE_H_

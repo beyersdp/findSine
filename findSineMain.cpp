@@ -9,8 +9,9 @@ int main(int argv, char* argc[]) {
 	object.printValues();
 	printf("[Main] Max values of object = %f\n", object.getMax());
 	object.findSine();
+	object.writeValues("testfile2.txt");
 
-	genSine(1, 1, 20);
+	genSine(1, 0.1, 100);
 
 	return 0;
 }

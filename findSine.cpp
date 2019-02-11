@@ -51,6 +51,11 @@ FunctionValues::FunctionValues(const char* argc) {
 }
 
 //___________________________________________________________________
+FunctionValues::~FunctionValues() {
+	delete this->values;
+}
+
+//___________________________________________________________________
 void FunctionValues::printValues() {
 	
 	for(int i = 0; i < this->numValues; i++) {
@@ -58,6 +63,21 @@ void FunctionValues::printValues() {
 	}
 }
 
+//___________________________________________________________________
+void FunctionValues::writeValues(const char* argc) {
+	
+	FILE* fp = fopen(argc, "w");
+	if (fp == NULL) {
+		printf("[writeValues][ERR] Cannot create file\n");
+		exit(1);
+	}
+
+	for (int i = 0; i < this->numValues; i++) {
+		fprintf(fp, "%f\n", this->values[i]);
+		printf("[writeValues] %f written\n", this->values[i]);	      }
+
+	fclose(fp);
+}
 
 //___________________________________________________________________
 double FunctionValues::getMax() {
@@ -82,11 +102,20 @@ double FunctionValues::findSine() {
 //___________________________________________________________________
 void genSine(double amp, double freq, int numValues) {
 
+	FILE* fp = fopen("sine.txt", "w");
+	if (fp == NULL) {
+		printf("[genSine][ERR] Cannot create file\n");
+		exit(1);
+	}
+
 	double value = 0;
 	for (int i = 0; i < numValues; i++) {
-		value = amp * sin((freq) * i);
-	       printf("[genSine] %f\n", value);	
+		value = amp * sin(freq * i);
+		printf("[genSine][%d] %f\n",i, value);
+		fprintf(fp, "%f\n", value);	
 	}
+
+	fclose(fp);
 }
 
 
