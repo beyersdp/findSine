@@ -1,2 +1,2 @@
 # findSine
-Project to sine a corresponding sine function for a given value series
+Project to fine a corresponding sine function for a given value series
