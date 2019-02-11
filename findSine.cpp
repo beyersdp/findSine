@@ -4,7 +4,7 @@
 #include "findSine.h"
 
 //____________________________________________________________________
-FunctionValues::FunctionValues(int argv, const char* argc) {
+FunctionValues::FunctionValues(const char* argc) {
 	
 	// open given file in dir by name in reading mode
 	FILE* fp = fopen(argc, "r");
@@ -55,4 +55,25 @@ void FunctionValues::printValues() {
 	for(int i = 0; i < this->numValues; i++) {
 		printf("[printValues] %f\n", this->values[i]);
 	}
+}
+
+
+//___________________________________________________________________
+double FunctionValues::getMax() {
+
+	double maxValue = 0;
+	for (int i = 0; i < this->numValues; i++) {
+		if (this->values[i] > maxValue) {
+			maxValue = this->values[i];
+		}
+	}
+	return maxValue;
+}
+
+//___________________________________________________________________
+double FunctionValues::findSine() {
+
+	printf("[findSine][LOG] TODO: functionallity\n");
+
+	return 0.0;
 }
