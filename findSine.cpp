@@ -19,7 +19,6 @@ FunctionValues::FunctionValues(const char* argc) {
 	size_t len = 0;
 	numValues = 0;
 	while ((getline(&line, &len, fp)) != -1) {
-	printf("%s\n", line);
 	printf("[FunctionValues] Reading value: %f\n", atof(line));
 	numValues++;
 	}
@@ -121,7 +120,7 @@ void FunctionValues::normalize() {
 
 	if (this->y_delta < 0) {
 		for (int j = 0; j < this->numValues; j++) {
-			this->values[j] += y_delta;
+			this->values[j] += abs(y_delta);
 		}
 	}
 }
@@ -145,23 +144,21 @@ double FunctionValues::findSine() {
 		amp = amp * (-1);
 	}
 
-	for (double i = -0.01; i > -1; i -= 0.001) {
+	for (double i = -0.001; i > -1; i -= 0.0001) {
 		printf("[findSine][%f]", i);
 		for (int j = 0; j < this->numValues; j++) {
 		
-			/*if ((amp * sin(i*j)) == this->values[j]) {
-				matches++;
-			}*/
 			double diff = this->values[j]-(amp*sin(i*j));
-		if (abs(diff) < 0.09) {
-			matches++;
-			}
+			if (abs(diff) < 0.09) {
+				matches++;
+			}	
+		}
 
 		if (matches > bestMatches) {
 			bestMatches = matches;
 			bestFreq = i;
 		}
-		}
+
 		matches = 0;
 		printf(" best matches = %d\n", bestMatches);	
 	}
@@ -184,7 +181,7 @@ void genSine(double amp, double freq, int numValues) {
 	double value = 0;
 	for (int i = 0; i < numValues; i++) {
 		value = amp * sin(freq * i);
-		printf("[genSine][%d] %f\n",i, value);
+		//printf("[genSine][%d] %f\n",i, value);
 		fprintf(fp, "%f\n", value);	
 	}
 

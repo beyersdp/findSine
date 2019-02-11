@@ -5,16 +5,16 @@
 // main function of the project to execute given functionallitys
 int main(int argv, char* argc[]) {
 
-	FunctionValues object = FunctionValues("1.txt");
+	FunctionValues object = FunctionValues("3.txt");
 	object.normalize();
 	printf("[Main] y_delta = %f\n", object.getY_Delta());
-	object.printValues();
-	object.writeValues("realData2.txt");
-	object.findSine();
-	
 	printf("[Main] max Value = %f\n", object.getMax());
-
-	genSine(object.getMax()*(-1), -0.032, object.getNumValues());
-
+	object.writeValues("3n.txt");
+	double freq = object.findSine();
+	
+	printf("[Main] amp = %f freq= %f c = %f\n"
+		, object.getMax()*(-1), freq, object.getY_Delta());
+	genSine(object.getMax()*(-1), freq, object.getNumValues());
+	
 	return 0;
 }
