@@ -99,7 +99,7 @@ double FunctionValues::getMax() {
 		}
 	}
 
-	if (((-2) * minValue) > maxValue) {
+	if (abs(minValue) > maxValue) {
 		return minValue;
 	}
 	else {
