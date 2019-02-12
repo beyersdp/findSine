@@ -53,7 +53,7 @@ FunctionValues::FunctionValues(const char* argc) {
 
 //___________________________________________________________________
 FunctionValues::~FunctionValues() {
-	delete this->values;
+	delete[] this->values;
 }
 
 //___________________________________________________________________
@@ -143,8 +143,10 @@ double FunctionValues::findSine() {
 	
 	double bestFreq = 0.0;
 	int bestMatches = 0;
+	double bestDiffQ = 1000000;
 
 	int matches = 0;
+	double diffQ = 0; //squared differences between sine and value
 	double amp = this->getMax();
 
 	if (amp < 0) {
@@ -158,7 +160,8 @@ double FunctionValues::findSine() {
 			double diff = this->values[j]-(amp*sin(i*j));
 			if (abs(diff) < 0.09) {
 				matches++;
-			}	
+			}
+			diffQ += pow(diff, 2);	
 		}
 
 		if (matches > bestMatches) {
@@ -166,13 +169,18 @@ double FunctionValues::findSine() {
 			bestFreq = i;
 		}
 
-		printf(" matches = %03d (best = %d)\n"
-				, matches, bestMatches);
-		matches = 0;	
+		if (diffQ < bestDiffQ) {
+			bestDiffQ = diffQ;
+		}
+
+		printf(" matches = %03d (best = %d) diffQ = %f\n"
+				, matches, bestMatches, diffQ);
+		matches = 0;
+		diffQ = 0;	
 	}
 
-	printf("[findSine] best matches (%d) with %f\n",
-			bestMatches, bestFreq);
+	printf("[findSine] best matches (%d) with %f (diffQ = %f)\n",
+			bestMatches, bestFreq, bestDiffQ);
 
 	return bestFreq;
 }
