@@ -194,6 +194,3 @@ void genSine(double amp, double freq, int numValues) {
 
 	fclose(fp);
 }
-
-
-

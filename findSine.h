@@ -1,8 +1,6 @@
 #ifndef FINDSINE_H_
 #define FINDSINE_H_
 
-#include <string>
-
 class FunctionValues {
  private:
 	 int numValues;
