@@ -166,8 +166,9 @@ double FunctionValues::findSine() {
 			bestFreq = i;
 		}
 
-		matches = 0;
-		printf(" best matches = %d\n", bestMatches);	
+		printf(" matches = %03d (best = %d)\n"
+				, matches, bestMatches);
+		matches = 0;	
 	}
 
 	printf("[findSine] best matches (%d) with %f\n",
