@@ -30,6 +30,9 @@ class FunctionValues {
 	 // Normalizes all values to start with 0 (= y_delta)
 	 void normalize();
 
+	 // Add or subtract y_delta on each value
+	 void denormalize();
+
 	 // returns y_delta
 	 double getY_Delta();
 

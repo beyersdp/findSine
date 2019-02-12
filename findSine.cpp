@@ -75,7 +75,7 @@ void FunctionValues::writeValues(const char* argc) {
 
 	for (int i = 0; i < this->numValues; i++) {
 		fprintf(fp, "%f\n", this->values[i]);
-		printf("[writeValues] %f written\n", this->values[i]);	      }
+	}
 
 	fclose(fp);
 }
@@ -125,6 +125,13 @@ void FunctionValues::normalize() {
 	}
 }
 
+//___________________________________________________________________
+void FunctionValues::denormalize() {
+	
+	for (int i = 0; i < this->numValues; i++) {
+		this->values[i] += this->y_delta;
+	}
+}
 //___________________________________________________________________
 double FunctionValues::getY_Delta() {
 
