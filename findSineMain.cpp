@@ -5,11 +5,11 @@
 // main function of the project to execute given functionallitys
 int main(int argv, char* argc[]) {
 
-	FunctionValues object = FunctionValues("testfile.txt");
+	FunctionValues object = FunctionValues("dataX.txt");
 	object.normalize();
 	printf("[Main] y_delta = %f\n", object.getY_Delta());
 	printf("[Main] max Value = %f\n", object.getMax());
-	object.writeValues("testfile2.txt");
+	object.writeValues("dataXn.txt");
 	
 	double freq = object.findSine();
 	

@@ -151,7 +151,7 @@ double FunctionValues::findSine() {
 		amp = amp * (-1);
 	}
 
-	for (double i = -0.0001; i > -1; i -= 0.0001) {
+	for (double i = -0.001; i > -1; i -= 0.0001) {
 		printf("[findSine][%f]", i);
 		for (int j = 0; j < this->numValues; j++) {
 		
