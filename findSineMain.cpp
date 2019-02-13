@@ -9,7 +9,6 @@ int main(int argv, char* argc[]) {
 	object.normalize();
 	printf("[Main] y_delta = %f\n", object.getY_Delta());
 	printf("[Main] max Value = %f\n", object.getMax());
-	object.writeValues(argc[2]);
 		
 	double freq = object.findSine();
 	
@@ -19,7 +18,7 @@ int main(int argv, char* argc[]) {
 		, object.getMax(), freq, object.getY_Delta());
 
 	genSine(object.getMax(), freq, object.getNumValues(),
-			object.getY_Delta(), argc[3]);
+			object.getY_Delta(), argc[2]);
 
 	return 0;
 }

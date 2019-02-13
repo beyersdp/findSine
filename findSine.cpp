@@ -19,7 +19,7 @@ FunctionValues::FunctionValues(const char* argc) {
 	size_t len = 0;
 	numValues = 0;
 	while ((getline(&line, &len, fp)) != -1) {
-	printf("[FunctionValues] Reading value: %f\n", atof(line));
+	//printf("[FunctionValues] Reading value: %f\n", atof(line));
 	numValues++;
 	}
 	
@@ -160,7 +160,6 @@ double FunctionValues::findSine() {
 	}
 
 	for (double i = -0.001; i > -1; i -= 0.0001) {
-		printf("[findSine][%f]", i);
 		for (int j = 0; j < this->numValues; j++) {
 		
 			double diff = this->values[j]-(amp*sin(i*j));
@@ -179,8 +178,6 @@ double FunctionValues::findSine() {
 			bestDiffQ = diffQ;
 		}
 
-		printf(" matches = %03d (best = %d) diffQ = %f\n"
-				, matches, bestMatches, diffQ);
 		matches = 0;
 		diffQ = 0;	
 	}
@@ -195,7 +192,7 @@ double FunctionValues::findSine() {
 void genSine(double amp, double freq, int numValues,
 		double c, const char* argc) {
 
-	FILE* fp = fopen("sine.temp", "w");
+	FILE* fp = fopen(argc, "w");
 	if (fp == NULL) {
 		printf("[genSine][ERR] Cannot create file\n");
 		exit(1);
