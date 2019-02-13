@@ -14,10 +14,9 @@ import sys
 
 
 
-filePathXY = input("\n[INIT] Enter file name with X or Y data: ")
-filePathZ = input("[INIT] Enter file name with Z data: ")
-filePathD = input("[INIT] Enter destination path: ")
-numValues = int(input("[INIT] Enter number of values: "))
+filePathXY = sys.argv[1]
+filePathZ = sys.argv[2]
+filePathD = sys.argv[3]
 
 
 
@@ -35,28 +34,6 @@ with open(filePathZ, "r") as fileIN:
 	with open ("dataZ.temp", "w") as fileOUT:
 		for line in fileIN:
 			fileOUT.write(line.replace(",", "."))
-
-
-			
-print("\n[Count] Check number of values in X or Y data...")
-count = 0
-with open ("dataXY.temp", "r") as file:
-	for line in file:
-		count += 1
-if count != numValues:
-	print("[Count][ERR] Number of values in X or Y data not corresponding (count = " +  str(count) + ")")
-	sys.exit(1)
-	
-print("[Count] Check number of values in Z data...")
-count = 0
-with open ("dataZ.temp", "r") as file:
-	for line in file:
-		count += 1
-if count != numValues:
-	print("[Count][ERR] Number of values in Z data not corresponding (count = " +  str(count) + ")")
-	sys.exit(1)
-
-print("[Count] Number of values corresponding with " + str(numValues))
 
 
 

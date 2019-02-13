@@ -20,5 +20,10 @@ int main(int argv, char* argc[]) {
 	genSine(object.getMax(), freq, object.getNumValues(),
 			object.getY_Delta(), argc[2]);
 
+	FILE* fp = fopen(argc[3], "w");
+	fprintf(fp, "y = %f * sin(%f * x) + (%f)\n"
+		, object.getMax(), freq, object.getY_Delta());
+	fclose(fp);	
+
 	return 0;
 }
