@@ -1,0 +1,4 @@
+[findSine] best matches (56) with -0.001000 (diffQ = 20179.165151)
+[Main] amp = 24.262100 freq= -0.001000 c = 5.273900
+[Main] y = 24.262100 * sin(-0.001000 * x) + (5.273900)
+

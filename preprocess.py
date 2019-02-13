@@ -16,6 +16,7 @@ import sys
 
 filePathXY = input("\n[INIT] Enter file name with X or Y data: ")
 filePathZ = input("[INIT] Enter file name with Z data: ")
+filePathD = input("[INIT] Enter destination path: ")
 numValues = int(input("[INIT] Enter number of values: "))
 
 
@@ -100,7 +101,7 @@ with open("dataXY.temp", "r") as fileY, open("dataZ.temp", "r") as fileZ:
 		#print(y.strip(), z.strip())
 		if float(z.strip()) > div:
 			change = False
-			erg = open(str(num) + ".txt", "a")
+			erg = open(filePathD + str(num) + ".txt", "a")
 			erg.write(y.strip() + "\n")
 			erg.close()
 		else:
@@ -113,19 +114,19 @@ print("[Seperate] Finished")
 
 
 count = 0
-with open ("1.txt", "r") as file:
+with open (filePathD + "1.txt", "r") as file:
 	for line in file:
 		count += 1
 print("\n[Results]  1.txt with {} values".format(count))
 
 count = 0
-with open ("2.txt", "r") as file:
+with open (filePathD + "2.txt", "r") as file:
 	for line in file:
 		count += 1
-print("\n[Results]  2.txt with {} values".format(count))
+print("[Results]  2.txt with {} values".format(count))
 
 count = 0
-with open ("3.txt", "r") as file:
+with open (filePathD + "3.txt", "r") as file:
 	for line in file:
 		count += 1
-print("\n[Results]  3.txt with {} values".format(count))
+print("[Results]  3.txt with {} values".format(count))
