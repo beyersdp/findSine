@@ -15,8 +15,11 @@ int main(int argv, char* argc[]) {
 	
 	printf("[Main] amp = %f freq= %f c = %f\n"
 		, object.getMax(), freq, object.getY_Delta());
-	
-	genSine(object.getMax(), freq, object.getNumValues());
+	printf("[Main] y = %f * sin(%f * x) + (%f)\n"
+		, object.getMax(), freq, object.getY_Delta());
+
+	genSine(object.getMax(), freq, object.getNumValues(),
+			object.getY_Delta(), argc[3]);
 
 	return 0;
 }

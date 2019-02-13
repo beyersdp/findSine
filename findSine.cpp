@@ -139,6 +139,12 @@ double FunctionValues::getY_Delta() {
 }
 
 //___________________________________________________________________
+void FunctionValues::setY_Delta(double d) {
+
+	this->y_delta = d;
+}
+
+//___________________________________________________________________
 double FunctionValues::findSine() {
 	
 	double bestFreq = 0.0;
@@ -186,9 +192,10 @@ double FunctionValues::findSine() {
 }
 
 //___________________________________________________________________
-void genSine(double amp, double freq, int numValues) {
+void genSine(double amp, double freq, int numValues,
+		double c, const char* argc) {
 
-	FILE* fp = fopen("sine.txt", "w");
+	FILE* fp = fopen("sine.temp", "w");
 	if (fp == NULL) {
 		printf("[genSine][ERR] Cannot create file\n");
 		exit(1);
@@ -196,7 +203,7 @@ void genSine(double amp, double freq, int numValues) {
 
 	double value = 0;
 	for (int i = 0; i < numValues; i++) {
-		value = amp * sin(freq * i);
+		value = amp * sin(freq * i) + c;
 		//printf("[genSine][%d] %f\n",i, value);
 		fprintf(fp, "%f\n", value);	
 	}

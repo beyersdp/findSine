@@ -34,6 +34,9 @@ class FunctionValues {
 	 // returns y_delta
 	 double getY_Delta();
 
+	 // sets the value of y_delta
+	 void setY_Delta(double d);
+
 	 // Finds a sine-function, that matches the values of the
 	 // object and returns the factor to generate the sine
 	 double findSine();
@@ -41,6 +44,7 @@ class FunctionValues {
 
 // Generates a Sine with given parameters and saves the values
 // in sine.txt in the current directory
-void genSine(double amp, double freq, int numValues);
+void genSine(double amp, double freq, int numValues,
+		double c, const char* argc);
 
 #endif //_FINDSINE_H_
