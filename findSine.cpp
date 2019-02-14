@@ -53,6 +53,7 @@ FunctionValues::FunctionValues(const char* argc) {
 
 //___________________________________________________________________
 FunctionValues::~FunctionValues() {
+	
 	delete[] this->values;
 }
 
@@ -82,6 +83,7 @@ void FunctionValues::writeValues(const char* argc) {
 
 //___________________________________________________________________
 int FunctionValues::getNumValues() {
+	
 	return this->numValues;
 }
 
@@ -152,7 +154,7 @@ double FunctionValues::findSine() {
 	double bestDiffQ = 1000000;
 
 	int matches = 0;
-	double diffQ = 0; //squared differences between sine and value
+	double diffQ = 0; //error square sum
 	double amp = this->getMax();
 
 	if (amp < 0) {
