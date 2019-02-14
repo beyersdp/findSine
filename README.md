@@ -1,7 +1,7 @@
 # findSine
 Project to fine a corresponding sine function for a given value series.
 
-Based on the approche to analyze the results of an research experiment, this code projetc presents a soultion to generate automatically specific statistic values to valid the performance of a series of participant.
+Based on the approche to analyze the results of an research experiment, this code project presents a soultion to generate automatically specific statistic values to valid the performance of a series of participants.
 
 The following workflow should be implemented:
 - Read the values from differents trys of multiple participants (three dimensions of correspondig values)
