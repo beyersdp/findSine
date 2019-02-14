@@ -211,7 +211,9 @@ double FunctionValues::findCosine() {
 	for (double i = 0.0001; i < 1; i += 0.0001) {
 		for (int j = 0; j < this->numValues; j++) {
 		
-		double diff = this->values[j]-((amp/2)*cos(i*j));
+		double diff = this->values[j]
+			-((amp/2)*cos(i*j)-(amp/2));
+
 		if (abs(diff) < 0.09) {
 			matches++;
 		}
