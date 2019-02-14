@@ -1,5 +1,18 @@
+'''
+-------------------------------------------------------------------------
+|	Project			: findSine											|
+|	Program name	: automatic.py										|
+|	Author			: P. Beyersdorffer									|
+|	Date created	: 14.02.2019 (09:25:07)       						|
+|	Purpose			: Execute the workflow automatically				|
+|	Dependencies    : findSineMain, preprocessARGS.py					|
+-------------------------------------------------------------------------
+'''
+
 import os
 
+
+# set range by user input (which participants should by analized?)
 p_start = int(input("[AUTO][INIT] Enter the number of the participant for starting: "))
 p_stop = int(input("[AUTO][INIT] Enter the number of the participant for stopping: "))
 
@@ -8,8 +21,7 @@ p_stop = int(input("[AUTO][INIT] Enter the number of the participant for stoppin
 while p_start < p_stop:
     print("[AUTO][INIT] Start process for participant {}".format(p_start))
 
-    for i in range(1,7):
-        
+    for i in range(1,7):     
         command_preprocess = "python3 preprocessARGS.py"
         command_preprocess_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x.txt"
         command_preprocess_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/z.txt"
@@ -41,3 +53,5 @@ while p_start < p_stop:
             os.system(command_findSineMain + command_findSineMain_a1 + command_findSineMain_a2 + command_findSineMain_a3) 
 
     p_start += 1
+
+print("[AUTO][INIT] Process finished")
