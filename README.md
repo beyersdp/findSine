@@ -13,5 +13,5 @@ The developed code project is dividable in two essencial parts:
 - Preprocess the data for each try of all participants [Python]
 - Compute the required results on the organized data [C/C++]
 
-This workflow should be exetuced automatically by a superordinated Python script
+This workflow is exetuced automatically by a superordinated Python script
 
