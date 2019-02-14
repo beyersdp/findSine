@@ -6,9 +6,11 @@ class FunctionValues {
 	 int numValues;
 	 double* values;
 	 double y_delta;
+	 double sineFreq;
+	 double eqs; // error square sum
  public:
 	 // Constructor, that reads values from a given file
-	 FunctionValues(const char* argc);
+	 FunctionValues(const char* argv);
 
 	 // Deconstructor
 	 ~FunctionValues();
@@ -17,7 +19,7 @@ class FunctionValues {
 	 void printValues();
 
 	 // write values into a file
-	 void writeValues(const char* argc);
+	 void writeValues(const char* argv);
 
  	 // Returns the max values ( = amplitude)
 	 double getMax();
@@ -37,14 +39,26 @@ class FunctionValues {
 	 // sets the value of y_delta
 	 void setY_Delta(double d);
 
+	 // retruns the error square sum (eqs) to generated sine
+	 double getEQS();
+
 	 // Finds a sine-function, that matches the values of the
 	 // object and returns the factor to generate the sine
 	 double findSine();
+
+	 // Finds a cosine-function, that macthes the vlaues of the
+	 // object and retruns the factor to generate the cosine
+	 double findCosine();
 };
 
 // Generates a Sine with given parameters and saves the values
-// in sine.txt in the current directory
+// in argv in the current directory
 void genSine(double amp, double freq, int numValues,
-		double c, const char* argc);
+		double c, const char* argv);
+
+// Generates a Cosine with given parameters and saves the values
+// in argv in the current directory
+void genCosine(double amp, double freq, int numValues,
+		double c, const char* argv);
 
 #endif //_FINDSINE_H_

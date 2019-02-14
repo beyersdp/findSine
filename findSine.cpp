@@ -5,10 +5,10 @@
 #include "findSine.h"
 
 //____________________________________________________________________
-FunctionValues::FunctionValues(const char* argc) {
+FunctionValues::FunctionValues(const char* argv) {
 	
 	// open given file in dir by name in reading mode
-	FILE* fp = fopen(argc, "r");
+	FILE* fp = fopen(argv, "r");
 	if (fp == NULL) {
 		printf("[FunctionValues][ERR] Cannot open file\n");
 		return;
@@ -31,9 +31,11 @@ FunctionValues::FunctionValues(const char* argc) {
 	this->numValues = numValues;
 	this->values = new double[numValues];
 	this->y_delta = 0;
+	this->sineFreq = 0;
+	this->eqs = 0;
 
 	// open given file again in reading mode
-	fp = fopen(argc, "r");
+	fp = fopen(argv, "r");
 	if (fp == NULL) {
 		printf("[FunctionValues][ERR] Cannot open file\n");
 		return;
@@ -66,9 +68,9 @@ void FunctionValues::printValues() {
 }
 
 //___________________________________________________________________
-void FunctionValues::writeValues(const char* argc) {
+void FunctionValues::writeValues(const char* argv) {
 	
-	FILE* fp = fopen(argc, "w");
+	FILE* fp = fopen(argv, "w");
 	if (fp == NULL) {
 		printf("[writeValues][ERR] Cannot create file\n");
 		exit(1);
@@ -147,6 +149,12 @@ void FunctionValues::setY_Delta(double d) {
 }
 
 //___________________________________________________________________
+double FunctionValues::getEQS() {
+
+	return this->eqs;
+}
+
+//___________________________________________________________________
 double FunctionValues::findSine() {
 	
 	double bestFreq = 0.0;
@@ -156,10 +164,6 @@ double FunctionValues::findSine() {
 	int matches = 0;
 	double diffQ = 0; //error square sum
 	double amp = this->getMax();
-
-	if (amp < 0) {
-		amp = amp * (-1);
-	}
 
 	for (double i = -0.001; i > -1; i -= 0.0001) {
 		for (int j = 0; j < this->numValues; j++) {
@@ -186,15 +190,61 @@ double FunctionValues::findSine() {
 
 	printf("[findSine] best matches (%d) with %f (diffQ = %f)\n",
 			bestMatches, bestFreq, bestDiffQ);
+	
+	this->sineFreq = bestFreq;
+	this->eqs = bestDiffQ;
+
+	return bestFreq;
+}
+
+//___________________________________________________________________
+double FunctionValues::findCosine() {
+	
+	double bestFreq = 0.0;
+	int bestMatches = 0;
+	double bestDiffQ = 1000000;
+
+	int matches = 0;
+	double diffQ = 0; //error square sum
+	double amp = this->getMax();
+
+	for (double i = 0.0001; i < 1; i += 0.0001) {
+		for (int j = 0; j < this->numValues; j++) {
+		
+		double diff = this->values[j]-((amp/2)*cos(i*j));
+		if (abs(diff) < 0.09) {
+			matches++;
+		}
+		diffQ += pow(diff, 2);	
+		}
+
+		if (matches > bestMatches) {
+			bestMatches = matches;
+			bestFreq = i;
+		}
+
+		if (diffQ < bestDiffQ) {
+			bestDiffQ = diffQ;
+		}
+
+		matches = 0;
+		diffQ = 0;	
+	}
+
+	printf("[findCosine] best matches (%d) with %f (diffQ = %f)\n"
+			, bestMatches, bestFreq, bestDiffQ);
+	
+	this->sineFreq = bestFreq;
+	this->eqs = bestDiffQ;
 
 	return bestFreq;
 }
 
 //___________________________________________________________________
 void genSine(double amp, double freq, int numValues,
-		double c, const char* argc) {
+		double c, const char* argv) {
 
-	FILE* fp = fopen(argc, "w");
+	FILE* fp = fopen(argv, "w");
 	if (fp == NULL) {
 		printf("[genSine][ERR] Cannot create file\n");
 		exit(1);
@@ -204,6 +254,26 @@ void genSine(double amp, double freq, int numValues,
 	for (int i = 0; i < numValues; i++) {
 		value = amp * sin(freq * i) + c;
 		//printf("[genSine][%d] %f\n",i, value);
+		fprintf(fp, "%f\n", value);	
+	}
+
+	fclose(fp);
+}
+
+//___________________________________________________________________
+void genCosine(double amp, double freq, int numValues,
+		double c, const char* argv) {
+
+	FILE* fp = fopen(argv, "w");
+	if (fp == NULL) {
+		printf("[genCosine][ERR] Cannot create file\n");
+		exit(1);
+	}
+
+	double value = 0;
+	for (int i = 0; i < numValues; i++) {
+		value = (amp/2) * cos(freq * i) - (amp/2) + c;
+		//printf("[genCosine][%d] %f\n",i, value);
 		fprintf(fp, "%f\n", value);	
 	}
 

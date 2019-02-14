@@ -34,8 +34,9 @@ while p_start < p_stop:
             command_findSineMain_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x/" + str(j) + ".txt"
             command_findSineMain_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x/" + str(j) + "sine.txt"
             command_findSineMain_a3 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x/" + str(j) + "res.txt"
-        
-            os.system(command_findSineMain + command_findSineMain_a1 + command_findSineMain_a2 + command_findSineMain_a3) 
+            command_findSineMain_a4 = " sin"
+
+            os.system(command_findSineMain+command_findSineMain_a1+command_findSineMain_a2+command_findSineMain_a3+command_findSineMain_a4) 
 
         command_preprocess = "python3 preprocessARGS.py"
         command_preprocess_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y.txt"
@@ -49,8 +50,9 @@ while p_start < p_stop:
             command_findSineMain_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + ".txt"
             command_findSineMain_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + "sine.txt"
             command_findSineMain_a3 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + "res.txt"
+            command_findSineMain_a4 = " cos"
 
-            os.system(command_findSineMain + command_findSineMain_a1 + command_findSineMain_a2 + command_findSineMain_a3) 
+            os.system(command_findSineMain+command_findSineMain_a1+command_findSineMain_a2+command_findSineMain_a3+command_findSineMain_a4)  
 
     p_start += 1
 
