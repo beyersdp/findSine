@@ -36,8 +36,8 @@ class FunctionValues {
 	 // returns y_delta
 	 double getY_Delta();
 
-	 // sets the value of y_delta
-	 void setY_Delta(double d);
+	 // retruns sineFreq
+	 double getSineFreq();
 
 	 // retruns the error square sum (eqs) to generated sine
 	 double getEQS();

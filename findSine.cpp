@@ -143,9 +143,9 @@ double FunctionValues::getY_Delta() {
 }
 
 //___________________________________________________________________
-void FunctionValues::setY_Delta(double d) {
+double FunctionValues::getSineFreq() {
 
-	this->y_delta = d;
+	return this->sineFreq;
 }
 
 //___________________________________________________________________
