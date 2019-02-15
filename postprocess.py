@@ -31,6 +31,7 @@ xitotal_sum = dict()
 ytotal_sum = 0
 yitotal_sum = dict()
 
+# Iterate over Participants
 while p_start <= p_end:
     
     xi_sum = dict()
@@ -108,8 +109,8 @@ while p_start <= p_end:
 
 print("")
 for (kx, vx), (ky, vy) in zip(xitotal_sum.items(), yitotal_sum.items()):
-    print("[]            Mean({}) = {}".format(kx, vx / p_num)) #DEBUG sonst vx / 31
-    print("[]            Mean({}) = {}".format(ky, vy / p_num)) #DEBUG sonst vx / 31
+    print("[]            Mean({}) = {}".format(kx, vx / p_num))
+    print("[]            Mean({}) = {}".format(ky, vy / p_num))
 
 print("[]            Mean(x) = {}".format(xtotal_sum / p_num)) 
 print("[]            Mean(y) = {}".format(ytotal_sum / p_num))
