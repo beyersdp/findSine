@@ -86,13 +86,24 @@ with open("./data/xyz/" + file_number +  "z.csv", "r") as z_IN:
             count += 1
 
 
+# check written data
+if (checksum_x - check_x) == cut_number:
+	print("[CHECK] {} values from {}x.txt removed"
+		.format(cut_number, file_number))
+else:
+	print("[CHECK][ERR] {} values from {}x.txt removed"
+		.format(checksum_x - check_x, cutnumber))
 
+if (checksum_y - check_y) == cut_number:
+	print("[CHECK] {} values from {}y.txt removed"
+		.format(cut_number, file_number))
+else:
+	print("[CHECK][ERR] {} values from {}y.txt removed"
+		.format(checksum_y - check_y, cutnumber))
 
-
-
-
-
-#TODO: Check
-
-
-
+if (checksum_z - check_z) == cut_number:
+	print("[CHECK] {} values from {}z.txt removed"
+		.format(cut_number, file_number))
+else:
+	print("[CHECK][ERR] {} values from {}z.txt removed"
+		.format(checksum_z - check_z, cutnumber))
