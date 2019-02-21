@@ -41,7 +41,7 @@ while p_start <= p_end:
     yp_sum = 0
 
     # Iterate over Trys
-    for t in range(1,4): #DEBUG, sonst 1,8
+    for t in range(1,8): #DEBUG, sonst 1,8
 
         x_sum  = 0
         y_sum  = 0
