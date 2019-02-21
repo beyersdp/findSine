@@ -18,10 +18,10 @@ p_stop = int(input("[AUTO][INIT] Enter the number of the participant for stoppin
 
 
 
-while p_start < p_stop:
+while p_start < p_stop + 1:
     print("[AUTO][INIT] Start process for participant {}".format(p_start))
 
-    for i in range(1,7):     
+    for i in range(1,7): #(1,7) preliminary studie | (1,8) main study     
         command_preprocess = "python3 preprocessARGS.py"
         command_preprocess_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x.txt"
         command_preprocess_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/z.txt"
@@ -29,7 +29,7 @@ while p_start < p_stop:
 
         os.system(command_preprocess + command_preprocess_a1 + command_preprocess_a2 + command_preprocess_a3)
 
-        for j in range(1,3):
+        for j in range(1,4):
             command_findSineMain = "./findSineMain"
             command_findSineMain_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x/" + str(j) + ".txt"
             command_findSineMain_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/x/" + str(j) + "sine.txt"
@@ -45,10 +45,10 @@ while p_start < p_stop:
     
         os.system(command_preprocess + command_preprocess_a1 + command_preprocess_a2 + command_preprocess_a3)
         
-        for k in range(1,3):
+        for k in range(1,4):
             command_findSineMain = "./findSineMain"
             command_findSineMain_a1 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + ".txt"
-            command_findSineMain_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + "sine.txt"
+            command_findSineMain_a2 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + "cosine.txt"
             command_findSineMain_a3 = " ./data/p" + str(p_start) + "/t" + str(i) + "/y/" + str(k) + "res.txt"
             command_findSineMain_a4 = " cos"
 
