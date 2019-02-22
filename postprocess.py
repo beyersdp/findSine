@@ -93,7 +93,7 @@ while p_start <= p_end:
                         else:
                             yitotal_sum["y{0}_sum".format(str(y))] = float(line) 
         
-        print("[P{}][T{}][ Y ] Mean(x) = {}".format(p_start,t, y_sum / 3))
+        print("[P{}][T{}][ Y ] Mean(y) = {}".format(p_start,t, y_sum / 3))
 
 
     print("")
